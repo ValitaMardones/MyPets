@@ -13,31 +13,35 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "comentarios")
-public class Comentario {
+@Table(name = "perfil_mascotas")
+public class PerfilMascota {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
 
+  // private ???? foto;
   @NotBlank
-  private String contenido;
+  private String descripcion;
 
   @CreationTimestamp
   private LocalDateTime fechaCreacion;
 
   @JsonIgnore
   @ManyToOne
-  @JoinColumn(name = "perfilMascota_id")
-  private PerfilMascota comentarioPerfilMascota;
+  @JoinColumn(name = "user_id")
+  private Usuario perfilMascotaUsuario;
 
   @JsonIgnore
-  @ManyToOne
-  @JoinColumn(name = "publicacion_id")
-  private Publicacion comentarioPublicacion;
+  @OneToMany(mappedBy = "likePerfilMascota")
+  private List<LikeUser> perfilMascotaLike;
 
   @JsonIgnore
-  @OneToMany(mappedBy = "likeComentario")
-  private List<LikeUser> comentarioLike;
+  @OneToMany(mappedBy = "comentarioPerfilMascota")
+  private List<Comentario> perfilMascotaComentario;
+
+  @JsonIgnore
+  @OneToMany(mappedBy = "publicacionPerfilMascota")
+  private List<Publicacion> perfilMascotaPublicacion;
 
 }
