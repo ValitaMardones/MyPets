@@ -1,7 +1,6 @@
 package com.redsocialmypets.mypets.model;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 
