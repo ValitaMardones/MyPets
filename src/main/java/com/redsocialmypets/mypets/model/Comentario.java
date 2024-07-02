@@ -28,16 +28,16 @@ public class Comentario {
 
   @JsonIgnore
   @ManyToOne
-  @JoinColumn(name = "perfilMascota_id")
-  private PerfilMascota comentarioPerfilMascota;
+  @JoinColumn(name = "id_perfilMascota")
+  private PerfilMascota idPerfilMascotaComentario;
 
   @JsonIgnore
   @ManyToOne
-  @JoinColumn(name = "publicacion_id")
-  private Publicacion comentarioPublicacion;
+  @JoinColumn(name = "id_publicacion")
+  private Publicacion idPublicacionComentario;
 
   @JsonIgnore
-  @OneToMany(mappedBy = "likeComentario")
+  @OneToMany(mappedBy = "idComentarioLike")
   private List<LikeUser> comentarioLike;
 
 }

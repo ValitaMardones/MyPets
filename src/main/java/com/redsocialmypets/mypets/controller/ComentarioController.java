@@ -26,11 +26,15 @@ public class ComentarioController {
     return comentarioService.findAllComentario();
   }
 
+  // Modificar para que cuando solicite revisar un comentario por id, me muestre
+  // un comentarioDTO
   @GetMapping("/{id}")
   public Comentario getComentarioById(@PathVariable Long id) {
     return comentarioService.getComentarioById(id);
   }
 
+  // Modificar para que cuando agrege un comentario, me muestre confirmacion con
+  // un comentarioDTO
   @PostMapping("/agregar")
   public ResponseEntity<?> agregarComentario(@RequestBody @Valid Comentario comentarioNuevo, BindingResult result) {
     if (result.hasErrors()) {

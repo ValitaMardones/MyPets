@@ -26,11 +26,15 @@ public class PublicacionController {
     return publicacionService.findAllPublicacion();
   }
 
+  // Modificar para que cuando solicite revisar una publicacion por id, me muestre
+  // una publicacionDTO
   @GetMapping("/{id}")
   public Publicacion getPublicacionById(@PathVariable Long id) {
     return publicacionService.getPublicacionById(id);
   }
 
+  // Modificar para que cuando agrege una publicacion, me muestre confirmacion con
+  // una publicacionDTO
   @PostMapping("/agregar")
   public ResponseEntity<?> agregarPublicacion(@RequestBody @Valid Publicacion publicacionNuevo, BindingResult result) {
     if (result.hasErrors()) {

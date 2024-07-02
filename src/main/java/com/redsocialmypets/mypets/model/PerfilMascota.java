@@ -18,30 +18,32 @@ public class PerfilMascota {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
+  private Long id;
 
   // private ???? foto;
+  @NotBlank
+  private String nombre;
+
   @NotBlank
   private String descripcion;
 
   @CreationTimestamp
   private LocalDateTime fechaCreacion;
 
-  @JsonIgnore
   @ManyToOne
-  @JoinColumn(name = "user_id")
-  private Usuario perfilMascotaUsuario;
+  @JoinColumn(name = "id_usuario")
+  private Usuario idUsuarioPerfilMascota;
 
   @JsonIgnore
-  @OneToMany(mappedBy = "likePerfilMascota")
+  @OneToMany(mappedBy = "idPerfilMascotaLike")
   private List<LikeUser> perfilMascotaLike;
 
   @JsonIgnore
-  @OneToMany(mappedBy = "comentarioPerfilMascota")
+  @OneToMany(mappedBy = "idPerfilMascotaComentario")
   private List<Comentario> perfilMascotaComentario;
 
   @JsonIgnore
-  @OneToMany(mappedBy = "publicacionPerfilMascota")
+  @OneToMany(mappedBy = "idPerfilMascotaPublicacion")
   private List<Publicacion> perfilMascotaPublicacion;
 
 }

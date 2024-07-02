@@ -30,15 +30,15 @@ public class Publicacion {
 
   @JsonIgnore
   @ManyToOne
-  @JoinColumn(name = "perfilMascota_id")
-  private PerfilMascota publicacionPerfilMascota;
+  @JoinColumn(name = "id_perfilMascota")
+  private PerfilMascota idPerfilMascotaPublicacion;
 
   @JsonIgnore
-  @OneToMany(mappedBy = "publicacionLike")
-  private List<LikeUser> likePublicacion;
+  @OneToMany(mappedBy = "idPublicacionLike")
+  private List<LikeUser> publicacionLike;
 
   @JsonIgnore
-  @OneToMany(mappedBy = "comentarioPublicacion")
+  @OneToMany(mappedBy = "idPublicacionComentario")
   private List<Comentario> publicacionComentario;
 
 }

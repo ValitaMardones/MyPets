@@ -33,7 +33,7 @@ public class Usuario {
   private LocalDateTime fechaCreacion;
 
   @JsonIgnore
-  @OneToMany(mappedBy = "perfilMascotaUsuario")
-  private List<PerfilMascota> usuarioFotoMascota;
+  @OneToMany(mappedBy = "idUsuarioPerfilMascota")
+  private List<PerfilMascota> usuarioPerfilMascota;
 
 }

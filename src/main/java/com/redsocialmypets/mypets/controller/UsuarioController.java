@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import com.redsocialmypets.mypets.model.Usuario;
+import com.redsocialmypets.mypets.model.DTO.UsuarioDTO;
 import com.redsocialmypets.mypets.service.UsuarioService;
 
 import jakarta.validation.Valid;
@@ -26,7 +27,7 @@ public class UsuarioController {
   }
 
   @GetMapping("/{id}")
-  public Usuario getUsuarioById(@PathVariable Long id) {
+  public UsuarioDTO getUsuarioById(@PathVariable Long id) {
     return usuarioService.getUsuarioById(id);
   }
 

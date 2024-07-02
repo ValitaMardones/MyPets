@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import com.redsocialmypets.mypets.model.PerfilMascota;
+import com.redsocialmypets.mypets.model.DTO.PerfilDTO;
 import com.redsocialmypets.mypets.service.PerfilMascotaService;
 
 import jakarta.validation.Valid;
@@ -26,7 +27,7 @@ public class PerfilMascotaController {
   }
 
   @GetMapping("/{id}")
-  public PerfilMascota getPerfilMascotaById(@PathVariable Long id) {
+  public PerfilDTO getPerfilMascotaById(@PathVariable Long id) {
     return perfilMascotaService.getPerfilMascotaById(id);
   }
 

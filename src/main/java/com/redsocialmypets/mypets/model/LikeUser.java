@@ -5,9 +5,9 @@ import java.time.LocalDateTime;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.redsocialmypets.mypets.model.Enum.ELikeUser;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Entity
@@ -19,25 +19,26 @@ public class LikeUser {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
 
-  @NotNull
-  private int confirm;
+  @Enumerated
+  @Column(name = "confirmacion")
+  private ELikeUser confirmacion;
 
   @CreationTimestamp
   private LocalDateTime fechaCreacion;
 
   @JsonIgnore
   @ManyToOne
-  @JoinColumn(name = "perfilMascota_id")
-  private PerfilMascota likePerfilMascota;
+  @JoinColumn(name = "id_perfilMascota")
+  private PerfilMascota idPerfilMascotaLike;
 
   @JsonIgnore
   @ManyToOne
-  @JoinColumn(name = "publicacion_id")
-  private Publicacion publicacionLike;
+  @JoinColumn(name = "id_publicacion")
+  private Publicacion idPublicacionLike;
 
   @JsonIgnore
   @ManyToOne
-  @JoinColumn(name = "comentario_id")
-  private Comentario likeComentario;
+  @JoinColumn(name = "id_comentario")
+  private Comentario idComentarioLike;
 
 }

@@ -33,11 +33,15 @@ public class LikeUserController {
     return likeUserService.findAllLikeUser();
   }
 
+  // Modificar para que cuando solicite revisar un like por id, me muestre un
+  // LikeDTO
   @GetMapping("/{id}")
   public LikeUser getLikeUserById(@PathVariable Long id) {
     return likeUserService.getLikeUserById(id);
   }
 
+  // Modificar para que cuando agrege un like, me muestre confirmacion con un
+  // likeDTO
   @PostMapping("/agregar")
   public ResponseEntity<?> agregarLikeUser(@RequestBody @Valid LikeUser likeUserNuevo, BindingResult result) {
     if (result.hasErrors()) {
