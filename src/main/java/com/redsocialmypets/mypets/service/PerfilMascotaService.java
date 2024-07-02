@@ -7,19 +7,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.redsocialmypets.mypets.model.PerfilMascota;
-import com.redsocialmypets.mypets.model.Usuario;
 import com.redsocialmypets.mypets.model.DTO.PerfilDTO;
 import com.redsocialmypets.mypets.repository.PerfilMascotaRepository;
-import com.redsocialmypets.mypets.repository.UsuarioRepository;
 
 @Service
 public class PerfilMascotaService {
 
   @Autowired
   private PerfilMascotaRepository perfilMascotaRepository;
-
-  @Autowired
-  private UsuarioRepository usuarioRepository;
 
   // Solo usuarios autorizados podran acceder a la lista completa de Perfiles de
   // Mascotas
@@ -32,11 +27,10 @@ public class PerfilMascotaService {
 
   public PerfilDTO getPerfilMascotaById(Long id) {
     PerfilMascota perfilGet = perfilMascotaRepository.findPerfilMascotaById(id);
-    Usuario perfilUsuario = usuarioRepository.findUsuarioById(id);
     PerfilDTO perfilDTOId = PerfilDTO.builder()
         .nombrePerfil(perfilGet.getNombre())
-        .nombreUsuario(perfilUsuario.getNombre())
-        .apellidoUsuario(perfilUsuario.getApellido())
+        .nombreUsuario(perfilGet.getIdUsuarioPerfilMascota().getNombre())
+        .apellidoUsuario(perfilGet.getIdUsuarioPerfilMascota().getApellido())
         .build();
     return perfilDTOId;
   }
@@ -46,11 +40,10 @@ public class PerfilMascotaService {
   @Transactional
   public PerfilDTO savePerfilMascota(PerfilMascota perfilMascota) {
     PerfilMascota perfilMascotaGuardar = perfilMascotaRepository.save(perfilMascota);
-    Usuario perfilUsuario = usuarioRepository.findUsuarioById(perfilMascotaGuardar.getIdUsuarioPerfilMascota().getId());
     PerfilDTO perfilDTOGuardado = PerfilDTO.builder()
         .nombrePerfil(perfilMascotaGuardar.getNombre())
-        .nombreUsuario(perfilUsuario.getNombre())
-        .apellidoUsuario(perfilUsuario.getApellido())
+        .nombreUsuario(perfilMascotaGuardar.getIdUsuarioPerfilMascota().getNombre())
+        .apellidoUsuario(perfilMascotaGuardar.getIdUsuarioPerfilMascota().getApellido())
         .build();
     return perfilDTOGuardado;
   }

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.redsocialmypets.mypets.model.LikeUser;
+import com.redsocialmypets.mypets.model.DTO.LikesDTO;
 import com.redsocialmypets.mypets.service.LikeUserService;
 
 import jakarta.validation.Valid;
@@ -36,7 +37,7 @@ public class LikeUserController {
   // Modificar para que cuando solicite revisar un like por id, me muestre un
   // LikeDTO
   @GetMapping("/{id}")
-  public LikeUser getLikeUserById(@PathVariable Long id) {
+  public LikesDTO getLikeUserById(@PathVariable Long id) {
     return likeUserService.getLikeUserById(id);
   }
 

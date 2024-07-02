@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 
 import com.redsocialmypets.mypets.model.Comentario;
+import com.redsocialmypets.mypets.model.DTO.ComentarioDTO;
 import com.redsocialmypets.mypets.service.ComentarioService;
 
 import jakarta.validation.Valid;
@@ -29,7 +30,7 @@ public class ComentarioController {
   // Modificar para que cuando solicite revisar un comentario por id, me muestre
   // un comentarioDTO
   @GetMapping("/{id}")
-  public Comentario getComentarioById(@PathVariable Long id) {
+  public ComentarioDTO getComentarioById(@PathVariable Long id) {
     return comentarioService.getComentarioById(id);
   }
 

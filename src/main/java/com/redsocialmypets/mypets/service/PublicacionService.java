@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.redsocialmypets.mypets.model.Publicacion;
+import com.redsocialmypets.mypets.model.DTO.PublicacionDTO;
 import com.redsocialmypets.mypets.repository.PublicacionRepository;
 
 @Service
@@ -19,15 +20,29 @@ public class PublicacionService {
     return publicacionRepository.findAll();
   }
 
-  public Publicacion getPublicacionById(Long id) {
-    var publicacionId = publicacionRepository.findById(id);
-    return publicacionId.get();
+  public PublicacionDTO getPublicacionById(Long id) {
+    Publicacion publicacionId = publicacionRepository.getPublicacionById(id);
+    PublicacionDTO publicacionDTOId = PublicacionDTO.builder()
+        .titulo(publicacionId.getTitulo())
+        .contenido(publicacionId.getContenido())
+        .nombrePerfil(publicacionId.getIdPerfilMascotaPublicacion().getNombre())
+        .fechaComentario(publicacionId.getFechaCreacion())
+        .likesComentario(publicacionId.getPublicacionLike())
+        .build();
+    return publicacionDTOId;
   }
 
   @Transactional
-  public Publicacion savePublicacion(Publicacion publicacion) {
+  public PublicacionDTO savePublicacion(Publicacion publicacion) {
     Publicacion publicacionGuardar = publicacionRepository.save(publicacion);
-    return publicacionGuardar;
+    PublicacionDTO publicacionDTO = PublicacionDTO.builder()
+        .titulo(publicacionGuardar.getTitulo())
+        .contenido(publicacionGuardar.getContenido())
+        .nombrePerfil(publicacionGuardar.getIdPerfilMascotaPublicacion().getNombre())
+        .fechaComentario(publicacionGuardar.getFechaCreacion())
+        .likesComentario(publicacionGuardar.getPublicacionLike())
+        .build();
+    return publicacionDTO;
   }
 
   @Transactional

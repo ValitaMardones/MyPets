@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 
 import com.redsocialmypets.mypets.model.Publicacion;
+import com.redsocialmypets.mypets.model.DTO.PublicacionDTO;
 import com.redsocialmypets.mypets.service.PublicacionService;
 
 import jakarta.validation.Valid;
@@ -29,7 +30,7 @@ public class PublicacionController {
   // Modificar para que cuando solicite revisar una publicacion por id, me muestre
   // una publicacionDTO
   @GetMapping("/{id}")
-  public Publicacion getPublicacionById(@PathVariable Long id) {
+  public PublicacionDTO getPublicacionById(@PathVariable Long id) {
     return publicacionService.getPublicacionById(id);
   }
 
