@@ -36,4 +36,9 @@ public class Usuario {
   @OneToMany(mappedBy = "idUsuarioPerfilMascota")
   private List<PerfilMascota> usuarioPerfilMascota;
 
+  @JsonIgnore
+  @ManyToOne
+  @JoinColumn(name = "id_rol")
+  private Rol rolUsuario;
+
 }
